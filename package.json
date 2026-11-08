@@ -1,0 +1,41 @@
+{
+	"name": "qlock",
+	"version": "0.9.1",
+	"private": true,
+	"description": "Ticketed local command queues for agents and shells",
+	"homepage": "https://github.com/codethread/qlock",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/codethread/qlock.git"
+	},
+	"bin": {
+		"qlock": "./bin/qlock.ts"
+	},
+	"type": "module",
+	"scripts": {
+		"fmt": "oxfmt",
+		"fmt:check": "oxfmt --check",
+		"lint": "oxlint --deny-warnings",
+		"typecheck": "tsc --noEmit",
+		"test": "bun test ./tests",
+		"test:unit": "bun test ./tests/*.test.ts",
+		"test:integration": "bun test ./tests/integration",
+		"build": "bun build ./bin/qlock.ts --compile --outfile ./dist/qlock",
+		"install:bin": "bun run ./scripts/install.ts",
+		"check": "bun run fmt:check && bun run lint && bun run typecheck && bun run test"
+	},
+	"dependencies": {
+		"commander": "^15.0.0",
+		"gray-matter": "^4.0.3",
+		"skills-handler": "^0.1.2",
+		"zod": "^4.6.5"
+	},
+	"devDependencies": {
+		"@stylistic/eslint-plugin": "^5.10.0",
+		"@types/bun": "^1.4.2",
+		"oxfmt": "^0.71.0",
+		"oxlint": "^1.86.0",
+		"typescript": "^7.0.2"
+	}
+}
