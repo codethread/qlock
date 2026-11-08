@@ -1,0 +1,38 @@
+name: Check
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      HOMEBREW_NO_AUTO_UPDATE: "1"
+      HOMEBREW_NO_INSTALL_CLEANUP: "1"
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: oven-sh/setup-bun@v2.2.0
+        with:
+          bun-version: "1.4.2"
+      - run: bun install --frozen-lockfile
+      - run: bun run check
+      - run: bun run build
+      - name: Smoke test the local installation
+        run: |
+          bun run install:bin
+          cd "$(mktemp -d)"
+          "$HOME/.local/bin/qlock" --version
+          "$HOME/.local/bin/qlock" status --json --lock "$PWD/queue.lock"
+          test "$("$HOME/.local/bin/qlock" exec -w 0 --lock "$PWD/queue.lock" -- printf success)" = success
+      - name: Build and test the Homebrew formula
+        run: |
+          eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+          brew tap codethread/qlock https://github.com/codethread/qlock.git
+          brew install --build-from-source --no-ask codethread/qlock/qlock
+          brew test codethread/qlock/qlock
