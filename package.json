@@ -1,6 +1,6 @@
 {
 	"name": "qlock",
-	"version": "0.10.1",
+	"version": "0.10.2",
 	"private": true,
 	"description": "Ticketed local command queues for agents and shells",
 	"homepage": "https://github.com/codethread/qlock",
