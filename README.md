@@ -7,8 +7,9 @@ Ticketed local command locking for agents and shells, implemented in TypeScript 
 ### Homebrew
 
 ```sh
+brew tap oven-sh/bun
 brew tap codethread/qlock https://github.com/codethread/qlock.git
-brew install codethread/qlock/qlock
+brew install oven-sh/bun/bun codethread/qlock/qlock
 brew test codethread/qlock/qlock
 ```
 

@@ -33,6 +33,8 @@ jobs:
       - name: Build and test the Homebrew formula
         run: |
           eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+          brew tap oven-sh/bun
           brew tap codethread/qlock https://github.com/codethread/qlock.git
+          brew install --no-ask oven-sh/bun/bun
           brew install --build-from-source --no-ask codethread/qlock/qlock
           brew test codethread/qlock/qlock
