@@ -7,7 +7,7 @@ import {
 	changelogSchema,
 	queryChangelog,
 	renderChangelog,
-} from "./changelog.ts";
+} from "@codethread/cli-changelog";
 import { normalizeError, runRequest } from "./run.ts";
 import type { SkillProvider } from "skills-handler";
 import type { Ticket } from "./queue.ts";

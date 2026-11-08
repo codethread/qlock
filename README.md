@@ -22,13 +22,17 @@ Install [Bun](https://bun.sh), then:
 ```sh
 git clone https://github.com/codethread/qlock.git
 cd qlock
+bun --cwd ../cli-changelog install --frozen-lockfile
+bun --cwd ../cli-changelog link
 bun install --frozen-lockfile
 bun run build
 bun run install:bin
 qlock --help
 ```
 
-The build writes `dist/qlock`. Installation copies it to `~/.local/bin/qlock`; put that directory on `PATH`. An existing symlink is replaced without altering its target. Building alone leaves installed commands untouched.
+Source builds require the local `cli-changelog` checkout, installed and registered as `@codethread/cli-changelog` before installing Qlock's dependencies. The Bun link also works from Qlock worktrees. CI and Homebrew builds of these commits need the shared package registered in their build environment too.
+
+The build writes `dist/qlock` and bundles the shared changelog library. Installation copies it to `~/.local/bin/qlock`; put that directory on `PATH`. An existing symlink is replaced without altering its target. Building alone leaves installed commands untouched.
 
 Bun is required for building. The executable runs on the build host's Unix-like platform without a separate Bun installation. Merge queues require Git. No project setup, configuration, tracker, daemon, Bash, `flock` or `shasum` is required.
 
