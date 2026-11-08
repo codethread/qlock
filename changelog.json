@@ -1,7 +1,20 @@
 [
 	{
 		"version": "0.9.1",
-		"changes": []
+		"changes": [
+			{
+				"commit": "142a07aa87adc7e069f7c9f46ea4291cdc9cf13e",
+				"summary": "Run qlock independently of Hive",
+				"body": "Build and install qlock from its own repository. Merge queues use Git directly and no longer require Honeycomb. Queue behavior, SQLite storage and existing lock paths are unchanged.",
+				"breaking": [],
+				"adoption": [
+					{
+						"requirement": "optional",
+						"text": "Install with Homebrew or build from source. Read README.md for installation commands; no project setup is required."
+					}
+				]
+			}
+		]
 	},
 	{
 		"version": "0.9.0",
