@@ -11,8 +11,6 @@ class Qlock < Formula
   depends_on "bun" => :build
   depends_on "git"
 
-  conflicts_with "codethread/hive/hive", because: "both install a qlock executable"
-
   def install
     ENV["BUN_INSTALL_CACHE_DIR"] = (buildpath/".bun-cache").to_s
     system "bun", "install", "--frozen-lockfile", "--ignore-scripts"

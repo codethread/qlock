@@ -12,7 +12,7 @@ brew install codethread/qlock/qlock
 brew test codethread/qlock/qlock
 ```
 
-The formula builds from source with Bun. It conflicts with the Hive formula because both install `qlock`; use the source installation below to keep the other Hive tools installed.
+The formula builds from source with Bun.
 
 ### From source
 
