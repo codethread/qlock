@@ -14,7 +14,7 @@ class Qlock < Formula
   conflicts_with "codethread/hive/hive", because: "both install a qlock executable"
 
   def install
-    ENV["BUN_INSTALL_CACHE_DIR"] = buildpath/".bun-cache"
+    ENV["BUN_INSTALL_CACHE_DIR"] = (buildpath/".bun-cache").to_s
     system "bun", "install", "--frozen-lockfile", "--ignore-scripts"
     system "bun", "run", "build"
     bin.install "dist/qlock"
