@@ -8,17 +8,14 @@ class Qlock < Formula
   sha256 "bbc1c8373bfa8e3e6b23b2200fc21831176ebb618d4d383b93aefc8277f6adde"
   license "MIT"
 
-  depends_on "oven-sh/bun/bun" => :build
+  depends_on "bun" => :build
   depends_on "git"
 
   conflicts_with "codethread/hive/hive", because: "both install a qlock executable"
 
-  def fetch
+  def install
     ENV["BUN_INSTALL_CACHE_DIR"] = buildpath/".bun-cache"
     system "bun", "install", "--frozen-lockfile", "--ignore-scripts"
-  end
-
-  def install
     system "bun", "run", "build"
     bin.install "dist/qlock"
   end
