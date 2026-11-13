@@ -16,22 +16,24 @@ The formula builds from source with Bun.
 
 ### From source
 
-Install [Bun](https://bun.sh), then:
+Install [mise](https://mise.jdx.dev), clone the repository, review its `mise.toml`, then run the default bootstrap:
 
 ```sh
 git clone https://github.com/codethread/qlock.git
 cd qlock
-bun install --frozen-lockfile
-bun run build
+mise trust
+mise run
 bun run install:bin
 qlock --help
 ```
 
-The shared `@codethread/cli-changelog` dependency is pinned to a GitHub commit and installed by Bun. Source, CI and Homebrew builds use the same committed lockfile.
+`mise run` (also available as `mise run bootstrap`) selects the exact Bun version, installs the root workspace from its frozen lockfile, generates `CHANGELOG.md` from `changelog.json`, and builds qlock. Re-running it is safe. To perform those build steps directly, use `bun install --frozen-lockfile`, `bun run changelog:generate`, and `bun run build`.
+
+The shared `@codethread/cli-changelog` dependency is pinned to upstream commit `c457e0a28686ce6349ce0956b1375635d53148d8`, which provides the Markdown renderer. Source, CI and Homebrew builds use the same committed root lockfile.
 
 The build writes `dist/qlock` and bundles the shared changelog library. Installation copies it to `~/.local/bin/qlock`; put that directory on `PATH`. An existing symlink is replaced without altering its target. Building alone leaves installed commands untouched.
 
-Bun is required for building. The executable runs on the build host's Unix-like platform without a separate Bun installation. Merge queues require Git. No project setup, configuration, tracker, daemon, Bash, `flock` or `shasum` is required.
+Bun is required for building. The executable runs on the build host's Unix-like platform without a separate Bun installation. Merge queues require Git. Running qlock itself needs no project setup, configuration, tracker, daemon, Bash, `flock` or `shasum`.
 
 ## Execute or resume
 
