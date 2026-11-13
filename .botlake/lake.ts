@@ -5,14 +5,16 @@ import flags from "./src/flags.ts";
 import identityExtension from "@botlake/extension-identity";
 import priming from "./src/priming.ts";
 import references from "./src/references.ts";
+import { ui } from "@botlake/extension-ct-config";
 import work from "./src/work.ts";
 import workAgents from "./src/work-agents.ts";
 
 export const lake = createLake({
 	name: "qlock",
-	minimumCore: "0.2.0",
+	minimumCore: "0.3.2",
 	extensions: [
 		batteriesExtension,
+		ui,
 		identityExtension,
 		flags,
 		references,
