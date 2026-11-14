@@ -131,3 +131,7 @@ Pure/injected tests exercise queue policy and CLI contracts; integration tests u
 ## License
 
 MIT. Extracted from [Hive](https://github.com/codethread/hive); this repository builds and runs independently.
+
+## Botlake Mail
+
+The repository lake enables direct Mail, registered identity links, and automatic live-agent delivery with five-minute post-stop resumption. Agents use `bl mail` and should inspect delivery status.
